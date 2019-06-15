@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# install necessary tools to compile C
+#   https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/compile-software.html
+yum groupinstall -y "Development Tools"
+
+cd /home/ec2-user
+wget https://github.com/HewlettPackard/netperf/archive/netperf-2.7.0.tar.gz
+tar xvf netperf-2.7.0.tar.gz
+
