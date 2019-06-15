@@ -25,7 +25,7 @@ Run `aws-ec2.sh` with your EC2 key pair name to launch EC2, and allow SSH access
 ./aws-ec2.sh --aws-keypair demo-key-pair
 ```
 
-The above shell script will run an EC2 instance and execute what's in the [`user-status.txt`](./user-status.txt). So the C compiler will be available and the netperf directory was retrieved and unarchived.
+The above shell script will run an EC2 instance and execute what's in the [`user-status.txt`](https://github.com/richardimaoka/netperf-compile/blob/master/user-data.txt). So the C compiler will be available and the netperf directory was retrieved and unarchived.
 
 Wait for the EC2 instance to have the ok status:
 ![](./ec2-status-ok.png)
@@ -89,7 +89,7 @@ This seems to be due to [this issue](https://stackoverflow.com/questions/1624552
 I could avoid the error by removing `inline` from `src/netlib.c`.
 (i.e.) change [this](https://github.com/HewlettPackard/netperf/blob/netperf-2.7.0/src/netlib.c#L4000L4004):
 
-```
+```c
 #ifdef WIN32
 __forceinline void demo_interval_display(double actual_interval)
 #else
@@ -100,13 +100,13 @@ __forceinline void demo_interval_display(double actual_interval)
 
 into this:
 
-```
+```c
 inline void demo_interval_display(double actual_interval)
 ```
 
 and also [this](https://github.com/HewlettPackard/netperf/blob/netperf-2.7.0/src/netlib.c#L4063L4071):
 
-```
+```c
 #ifdef WIN32
 /* It would seem that the Microsoft compiler will not inline across
    source files. So there is little point in having an inline
@@ -121,7 +121,7 @@ void demo_interval_tick(uint32_t units)
 
 into this:
 
-```
+```c
 void demo_interval_tick(uint32_t units)
 {
 ```
