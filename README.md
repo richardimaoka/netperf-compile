@@ -4,7 +4,12 @@ This repo summrazes a [compilation error](https://github.com/HewlettPackard/netp
 
 - You have an AWS account and suffucient permission to create EC2
 - EC2 key pair for SSH login 
-- Your default security group in default VPC to allow SSH access
+
+![](./ec2-key-pair.png)
+
+- Your default security group in default VPC to allow SSH access from your local machine
+
+![](./ec2-security-group.png)
 
 ## Steps to reproduce the compilation error:
 
@@ -20,12 +25,17 @@ Run `aws-ec2.sh` with your EC2 key pair name to launch EC2, and allow SSH access
 ./aws-ec2.sh --aws-keypair demo-key-pair
 ```
 
-Wait for the EC2 instance to have the ok status:
+The above shell script will run an EC2 instance and execute what's in the [`user-status.txt`](./user-status.txt). So the C compiler will be available and the netperf directory was retrieved and unarchived.
 
-Confirm the public IP address and SSH login to it:
+Wait for the EC2 instance to have the ok status:
+![](./ec2-status-ok.png)
+
+Confirm the public IP address on AWS Web Console and SSH login to the EC2 instance:
+
+![](./ec2-public-ip.png)
 
 ```
-ssh -i ~/.ssh/demo-key-pair.pem ec2-user@13.114.84.55
+ssh -i ~/.ssh/demo-key-pair.pem ec2-user@13.114.167.107
 ```
 
 You can see the netperf was downloaded from [GitHub](https://github.com/HewlettPackard/netperf/releases) and unarchived as follows:
