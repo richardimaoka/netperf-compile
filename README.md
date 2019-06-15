@@ -1,6 +1,4 @@
-I ran into this issue using Amazon Linux 2 on Amazon EC2.
-So the procedure to reproduce the error requires your AWS account.
-
+This repo summrazes a [compilation error](https://github.com/HewlettPackard/netperf/issues/35) I encountered when I tried to compile netperf with the `--enable-demo` flag on. I ran into this issue using Amazon Linux 2 on Amazon EC2. So the procedure to reproduce the error requires your AWS account.
 
 ## Prerequisite
 
